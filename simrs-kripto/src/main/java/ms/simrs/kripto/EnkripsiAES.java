@@ -1,24 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package AESsecurity;
+package ms.simrs.kripto;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base64;
 
-
 /**
  *
  * @author khanzamedia
  */
 public class EnkripsiAES {
-    private static String key = "Bar12345Bar12345"; // 128 bit key
-    private static String initVector = "sayangsamakhanza"; // 16 bytes IV
-        
+
+    private static final String key = "Bar12345Bar12345"; // 128 bit key
+    private static final String initVector = "sayangsamakhanza"; // 16 bytes IV
+
     public static String decrypt(String encrypted) {
         try {
             IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
@@ -36,7 +31,7 @@ public class EnkripsiAES {
 
         return null;
     }
-    
+
     public static String encrypt(String value) {
         try {
             IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
@@ -46,6 +41,7 @@ public class EnkripsiAES {
             cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
 
             byte[] encrypted = cipher.doFinal(value.getBytes());
+
             return Base64.encodeBase64String(encrypted);
         } catch (Exception ex) {
             System.out.println("Ciluk Baaaaaaaa!!!!!");
@@ -53,5 +49,5 @@ public class EnkripsiAES {
 
         return null;
     }
-    
+
 }
